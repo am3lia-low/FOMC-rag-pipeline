@@ -66,7 +66,34 @@ RAG's biggest win is faithfulness (+111%) — it grounds every claim in an actua
 pip install -r requirements.txt
 ```
 
-The notebook (`fomc_rag_pipeline.ipynb`) is designed to run on Google Colab with a free T4 GPU. Models are cached to Google Drive to avoid re-downloading across sessions.
+Copy `.env.example` to `.env` and fill in your credentials:
+
+```bash
+cp .env.example .env
+```
+
+```env
+ANTHROPIC_API_KEY=sk-ant-...   # for Claude Haiku evaluation judge
+HF_TOKEN=hf_...                # for loading the FOMC dataset from HuggingFace
+```
+
+### Running the pipeline
+
+```bash
+python main.py --query "What was the Fed's stance on inflation in March 2023?"
+```
+
+**Options:**
+
+| Flag | Default | Description |
+|---|---|---|
+| `--query` | required | Natural language question about FOMC policy |
+| `--top-k` | 5 | Number of passages to retrieve |
+| `--no-date-filter` | off | Disable date-based pre-filtering |
+
+On first run, `main.py` downloads the FOMC dataset and both embedding/generation models from HuggingFace — this takes a few minutes. Subsequent runs reuse cached models.
+
+The notebook (`fomc_rag_pipeline.ipynb`) is designed to run on Google Colab with a free T4 GPU. Models are cached to Google Drive to avoid re-downloading across sessions. The `src/` modules can be used independently of the notebook.
 
 ## Limitations & Future Work
 

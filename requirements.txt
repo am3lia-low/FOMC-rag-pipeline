@@ -21,3 +21,4 @@ anthropic
 
 # Utilities
 matplotlib
+python-dotenv
