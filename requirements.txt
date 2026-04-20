@@ -1,0 +1,23 @@
+# Core data & ML
+datasets
+pandas
+numpy
+torch
+transformers
+accelerate
+bitsandbytes
+sentence-transformers
+huggingface_hub
+
+# Vector search
+faiss-cpu
+
+# Keyword search
+rank_bm25
+
+# Evaluation
+rouge-score
+anthropic
+
+# Utilities
+matplotlib
